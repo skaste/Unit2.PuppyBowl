@@ -5,7 +5,7 @@ const state = {
   allPlayers: [],
 };
 
-// Take all players and show them on the page
+// Take all players and show them on the page (step1)
 const getAllPlayers = async () => {
   try {
     const response = await fetch(apiBaseURL + "players");
@@ -17,23 +17,46 @@ const getAllPlayers = async () => {
     return (`There was an error`);
   }
 };
-
+//------------for use when appllying players to cards in HTML-----------//
 const renderAllPlayers = () => {
   state.allPlayers.forEach(elem => {
     console.log('foreach', elem.id, elem.name, elem.breed);
     return(`foreach`. elem.id, elem.name, elem.breed);
   })
+};
 
 
-}
-// const getPlayerName =  (nameOfPlayers) => {
-//   const response = await fetch(apiBaseURL + "players" + ${id});
-//   const responseJson = await response.json();
-//   const playerName = responseJson.data.players.name;
-//   console.log(playerName);
-//   renderName();
-// };
-// getPlayerName();
+//----------------------Display Single Player (step 2)-------------------------//
+const getPlayerDetails = async (playerID) => {
+  try {
+    const response = await fetch(apiBaseURL + "players/" + playerID);
+    const responseJson = await response.json();
+    const playerDetails = responseJson.data.player;
+    console.log(playerDetails);
+    renderDetails(playerDetails);
+  } catch (error) {
+    console.error("Error fetching player details:", error.message);
+  }
+};
+
+//------------Display onto HTML-----------------------//
+const renderDetails = (playerDetails) => {
+  const html = `
+  <h2>${detailsOfPlayer.id}</h2>
+  <p>${detailsofPlayer.name}<p>
+  <img src=${detailsOfPlayer.imageURL} width 150px>
+  <p>${detailsOfPlayer.breed}</p>
+  <p>${detailsOfPlayer.status}</p>
+  <p>${detailsOfPlayer.teamId}</p>
+  `;
+MediaDeviceInfo.innerHTML = html;
+
+const backButton = document.querySelector(`#backButton`);
+console.log(backButton);
+backButton.addEventListener(`click`, () => {
+  renderAllPlayers();
+})
+} 
 
 getAllPlayers();
 
