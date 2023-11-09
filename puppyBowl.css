@@ -10,12 +10,37 @@ body {
   margin: 10px;
   cursor: pointer;
 }
-
 .card:hover {
   background-color: cadetblue;
 }
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+  }
+  .card-body {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .card-text {
+    color: #555;
+  }
 
 img {
   display: inline;
   width: 100px;
+}
+h1{
+  color: darkcyan;
+  text-align: center;
+  font-style: italic;
+}
+main {
+  text-transform: capitalize;
+  color: peru;
 }

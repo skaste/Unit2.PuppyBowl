@@ -62,25 +62,32 @@ const renderDetails = (playerDetails) => {
 
 //--------------------Render All Players to HTML--------------//
 const renderAllPlayers = () => {
-  const playerNames = state.allPlayers.map((singlePlayer) => {
-    return `<div class= "card" id="${singlePlayer.id}">${singlePlayer.name}  ${singlePlayer.breed}</div>`;
+  const playerCards = state.allPlayers.map((singlePlayer) => {
+    return `
+      <div class="card" id="${singlePlayer.id}">
+        <div class="card-body">
+          <h5 class="card-title">${singlePlayer.name}</h5>
+          <p class="card-text">${singlePlayer.breed}</p>
+        </div>
+      </div>
+    `;
   });
 
   // console.log(playerNames);
 
   //--------------Add elements to main-----------------------//
   const section = document.createElement(`section`);
-  section.innerHTML = playerNames.join("");
-  main.replaceChildren(section);
+    section.classList.add("card-container");
+    section.innerHTML = playerCards.join("");
+    main.replaceChildren(section);
   // console.log(section);
 
   //------------------Create Listener and loop to add to each item--------//
-  const listItems = document.querySelectorAll(`div`);
+  const cardBodies = document.querySelectorAll(`.card-body`);
 
-  listItems.forEach((playerListItem) => {
-    playerListItem.addEventListener(`click`, (event) => {
-      // console.log(event.target.id);
-      getPlayerDetails(event.target.id);
+  cardBodies.forEach((cardBody) => {
+    cardBody.addEventListener(`click`, (event) => {
+      getPlayerDetails(event.currentTarget.parentElement.id);
     });
   });
 };
