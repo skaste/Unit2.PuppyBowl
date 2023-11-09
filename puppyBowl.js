@@ -8,11 +8,27 @@ const state = {
 // Take all players and show them on the page
 const getAllPlayers = async () => {
   try {
-    const data = await fetch(apiBaseURL + "players");
+    const response = await fetch(apiBaseURL + "players");
     const jsonResponse = await response.json();
-    state.allPlayers = jsonResponse.data;
+    state.allPlayers = jsonResponse.data.players; 
     console.log(jsonResponse);
+    renderAllPlayers();
   } catch (error) {
-    console.log(error)
+    return (`There was an error`);
   }
 };
+
+const getPlayerName = async (nameOfPlayers) => {
+  const response = await fetch(apiBaseURL + "players" + "id");
+  const responseJson = await response.json();
+  const playerName = responseJson.data.players.name;
+  console.log(playerName);
+  renderName();
+};
+
+
+getAllPlayers();
+
+
+
+
