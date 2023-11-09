@@ -1,3 +1,4 @@
+//---------global variables------------------//
 const apiBaseURL = `https://fsa-puppy-bowl.herokuapp.com/api/2310-FSA-ET-WEB-FT-SF/`;
 // console.log(apiBaseURL);
 
@@ -40,7 +41,7 @@ const getPlayerDetails = async (playerID) => {
   }
 };
 
-//------------Display Detaisl onto HTML-----------------------//
+//------------Display Details onto HTML-----------------------//
 const renderDetails = (playerDetails) => {
   const html = `
   <h2>${playerDetails.id}</h2>
@@ -90,5 +91,53 @@ const renderAllPlayers = () => {
       getPlayerDetails(event.currentTarget.parentElement.id);
     });
   });
+
+  // const addPlayer = async () => {
+  //   try {
+  //     const newPlayerData = {
+  //       name: document.getElementById("nameInput").value,
+  //       breed: document.getElementById("breedInput").value,
+  //       status: document.getElementById("statusInput").value,
+  //       imageUrl: document.getElementById("imageUrlInput").value,
+  //       teamId: parseInt(document.getElementById("teamIdInput").value),
+  //       cohortId: parseInt(document.getElementById("cohortIdInput").value),
+  //     };
+  
+  //     const response = await fetch(apiBaseURL + "players", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(newPlayerData),
+  //     });
+  
+  //     const responseJson = await response.json();
+  //     const addedPlayer = responseJson.data.newPlayer;
+  
+  //     console.log("Response JSON:", responseJson);
+  //     console.log("New player added:", addedPlayer);
 };
+
+// try{
+//   const response = await fetch(
+//     'https://fsa-puppy-bowl.herokuapp.com/api/COHORT-NAME/players',
+//     {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         name: 'Stevo',
+//         breed: 'Merican',
+//       }),
+//     }
+//   );
+//   const result = await response.json();
+//   console.log(result);
+// }catch (err) {
+// console.error(err);
+// }
+
+  
+
 getAllPlayers();
