@@ -33,7 +33,7 @@ const getPlayerDetails = async (playerID) => {
     const response = await fetch(apiBaseURL + "players/" + playerID);
     const responseJson = await response.json();
     const playerDetails = responseJson.data.player;
-    console.log(playerDetails);
+    // console.log(playerDetails);
     renderDetails(playerDetails);
   } catch (error) {
     console.error("Error fetching player details:", error.message);
@@ -45,7 +45,7 @@ const renderDetails = (playerDetails) => {
   const html = `
   <h2>${playerDetails.id}</h2>
   <p>${playerDetails.name}<p>
-  <img src=${playerDetails.imageUrl} width: 150px;>
+  <img src=${playerDetails.imageUrl} width 10px>
   <p>${playerDetails.breed}</p>
   <p>${playerDetails.status}</p>
   <p>${playerDetails.teamId}</p>
@@ -54,7 +54,7 @@ const renderDetails = (playerDetails) => {
   main.innerHTML = html;
 
   const backButton = document.querySelector(`#backButton`);
-  console.log(backButton);
+  // console.log(backButton);
   backButton.addEventListener(`click`, () => {
     renderAllPlayers();
   });
@@ -63,23 +63,23 @@ const renderDetails = (playerDetails) => {
 //--------------------Render All Players to HTML--------------//
 const renderAllPlayers = () => {
   const playerNames = state.allPlayers.map((singlePlayer) => {
-    return `<div id="${singlePlayer.id}">${singlePlayer.name}  ${singlePlayer.breed}</div>`;
+    return `<div class= "card" id="${singlePlayer.id}">${singlePlayer.name}  ${singlePlayer.breed}</div>`;
   });
 
-  console.log(playerNames);
+  // console.log(playerNames);
 
   //--------------Add elements to main-----------------------//
   const section = document.createElement(`section`);
   section.innerHTML = playerNames.join("");
   main.replaceChildren(section);
-  console.log(section);
+  // console.log(section);
 
   //------------------Create Listener and loop to add to each item--------//
   const listItems = document.querySelectorAll(`div`);
 
   listItems.forEach((playerListItem) => {
     playerListItem.addEventListener(`click`, (event) => {
-      console.log(event.target.id);
+      // console.log(event.target.id);
       getPlayerDetails(event.target.id);
     });
   });
