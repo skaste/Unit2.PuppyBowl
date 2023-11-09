@@ -18,12 +18,12 @@ const getAllPlayers = async () => {
   }
 };
 //------------for use when appllying players to cards in HTML-----------//
-const renderAllPlayers = () => {
-  state.allPlayers.forEach(elem => {
-    console.log('foreach', elem.id, elem.name, elem.breed);
-    return(`foreach`. elem.id, elem.name, elem.breed);
-  })
-};
+// const renderAllPlayers = () => {
+//   state.allPlayers.forEach(elem => {
+//     console.log('foreach', elem.id, elem.name, elem.breed);
+//     return(`foreach`. elem.id, elem.name, elem.breed);
+//   })
+// };
 
 
 //----------------------Display Single Player (step 2)-------------------------//
@@ -39,7 +39,7 @@ const getPlayerDetails = async (playerID) => {
   }
 };
 
-//------------Display onto HTML-----------------------//
+//------------Display Detaisl onto HTML-----------------------//
 const renderDetails = (playerDetails) => {
   const html = `
   <h2>${detailsOfPlayer.id}</h2>
@@ -55,8 +55,18 @@ const backButton = document.querySelector(`#backButton`);
 console.log(backButton);
 backButton.addEventListener(`click`, () => {
   renderAllPlayers();
-})
+});
 } 
+
+//--------------------Render All Players to HTML--------------//
+const renderAllPlayers = () => {
+  const playerNames = state.allPlayers.map((singlePlayer) => {
+    return `<li id="${singlePlayer.id}">${singlePlayer.name}</li>`
+    
+  });
+  console.log(playerNames);
+}
+//--------------Add elements to main-----------------------//
 
 getAllPlayers();
 
