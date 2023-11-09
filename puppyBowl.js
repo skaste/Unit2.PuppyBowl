@@ -49,7 +49,7 @@ const renderDetails = (playerDetails) => {
   <p>${detailsOfPlayer.status}</p>
   <p>${detailsOfPlayer.teamId}</p>
   `;
-MediaDeviceInfo.innerHTML = html;
+main.innerHTML = html;
 
 const backButton = document.querySelector(`#backButton`);
 console.log(backButton);
