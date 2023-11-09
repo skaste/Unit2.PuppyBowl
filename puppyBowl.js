@@ -11,21 +11,29 @@ const getAllPlayers = async () => {
     const response = await fetch(apiBaseURL + "players");
     const jsonResponse = await response.json();
     state.allPlayers = jsonResponse.data.players; 
-    console.log(jsonResponse);
+    console.log(state.allPlayers);
     renderAllPlayers();
   } catch (error) {
     return (`There was an error`);
   }
 };
 
-const getPlayerName = async (nameOfPlayers) => {
-  const response = await fetch(apiBaseURL + "players" + "id");
-  const responseJson = await response.json();
-  const playerName = responseJson.data.players.name;
-  console.log(playerName);
-  renderName();
-};
+const renderAllPlayers = () => {
+  state.allPlayers.forEach(elem => {
+    console.log('foreach', elem.id, elem.name, elem.breed);
+    return(`foreach`. elem.id, elem.name, elem.breed);
+  })
 
+
+}
+// const getPlayerName =  (nameOfPlayers) => {
+//   const response = await fetch(apiBaseURL + "players" + ${id});
+//   const responseJson = await response.json();
+//   const playerName = responseJson.data.players.name;
+//   console.log(playerName);
+//   renderName();
+// };
+// getPlayerName();
 
 getAllPlayers();
 
